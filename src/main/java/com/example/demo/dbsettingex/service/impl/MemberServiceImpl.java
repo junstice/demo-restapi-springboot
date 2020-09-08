@@ -16,7 +16,18 @@ public class MemberServiceImpl implements MembersService {
 	private MembersDAO dao;
 	
 	@Override
+	public Member test() {
+
+		return null;
+	}
+
+	@Override
 	public List<Member> memberList() {		
 		return dao.selectMembers();
+	}
+
+	@Override
+	public void registerMember(Member member) {
+		dao.registerMember(member);
 	}
 }

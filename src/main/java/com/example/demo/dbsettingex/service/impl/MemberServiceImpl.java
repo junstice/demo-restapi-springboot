@@ -30,4 +30,14 @@ public class MemberServiceImpl implements MembersService {
 	public void registerMember(Member member) {
 		dao.registerMember(member);
 	}
+
+	@Override
+	public Integer modifyMember(Member member) {
+		return dao.modifyMember(member);
+	}
+
+	@Override
+	public Integer removeMember(Integer id) {
+		return dao.removeMember(id);
+	}
 }

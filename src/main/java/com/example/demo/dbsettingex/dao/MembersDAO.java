@@ -10,4 +10,6 @@ import com.example.demo.dbsettingex.dto.Member;
 public interface MembersDAO {
 	List<Member> selectMembers();
 	void registerMember(Member member);
+	Integer modifyMember(Member member);
+	Integer removeMember(Integer id);
 }

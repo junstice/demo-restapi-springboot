@@ -7,10 +7,29 @@
 		SELECT * FROM members
 	</select>
 	
-	<insert id="registerMember" parameterType="com.example.demo.dbsettingex.dto.Member">
+	<!-- INSERT 삽입된 행의 개수를 반환 -->
+	<insert id="registerMember" parameterType="com.example.demo.dbsettingex.dto.Member" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
-			members
+			members (name, age, dept)
 		VALUES
-			(#{id}, #{name}, #{age}, #{dept})		
+			(#{name}, #{age}, #{dept})		
 	</insert>
+
+    <!-- UPDATE  수정한 행의 개수를 반환(실패 시 0) -->
+	<update id="modifyMember" parameterType="com.example.demo.dbsettingex.dto.Member" >
+		UPDATE
+		    members
+		SET
+		    name = #{name}, age = #{age}, dept= #{dept}
+		WHERE
+		    id = #{id}
+	</update>
+	
+	<!-- DELETE 삭제한 행의 개수를 반환 -->
+	<delete id="removeMember" parameterType="int">
+	    DELETE FROM
+	        members
+	    WHERE
+	        id = #{id}
+	</delete>
 </mapper>

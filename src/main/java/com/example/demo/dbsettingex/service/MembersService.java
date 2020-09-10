@@ -8,6 +8,7 @@ public interface MembersService {
 	Member test();
 	List<Member> memberList();
 	void registerMember(Member member);
-	Integer modifyMember(Member member);
+	Member putMember(Integer id, Member member);
+	Member patchMember(Integer id, Member member);
 	Integer removeMember(Integer id);
 }

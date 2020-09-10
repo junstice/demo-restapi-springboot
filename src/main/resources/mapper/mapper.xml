@@ -15,12 +15,31 @@
 			(#{name}, #{age}, #{dept})		
 	</insert>
 
-    <!-- UPDATE  수정한 행의 개수를 반환(실패 시 0) -->
-	<update id="modifyMember" parameterType="com.example.demo.dbsettingex.dto.Member" >
+    <!-- UPDATE(http PUT)  수정한 행의 개수를 반환(실패 시 0) -->
+	<update id="putMember">
 		UPDATE
 		    members
 		SET
-		    name = #{name}, age = #{age}, dept= #{dept}
+		    name = #{member.name}, age = #{member.age}, dept= #{member.dept}
+		WHERE
+		    id = #{id}
+	</update>
+	
+    <!-- UPDATE(http PATCH)  수정한 행의 개수를 반환(실패 시 0) -->
+	<update id="patchMember">
+		UPDATE
+		    members
+			<trim prefix="SET" suffixOverrides=",">
+			    <if test="member.name != null and member.name != ''">
+			    	name = #{member.name}, 
+			    </if>
+			    <if test="member.age != null and member.age != ''">
+			    	age = #{member.age}, 
+			    </if>
+			    <if test="member.dept != null and member.dept != ''">
+			    	dept = #{member.dept},
+			    </if>
+			</trim>
 		WHERE
 		    id = #{id}
 	</update>

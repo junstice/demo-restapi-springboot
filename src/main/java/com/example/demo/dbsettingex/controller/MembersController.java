@@ -3,9 +3,9 @@ package com.example.demo.dbsettingex.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -51,21 +51,20 @@ public class MembersController {
 		return member;
 	}
 	
-	@PutMapping//(path = "/members")
-	public Integer modifyMember(@RequestBody Member member) {
-		return service.modifyMember(member);
+	@PutMapping(path = "/{id}") // 전체 갱신(CREATE/REPLACE)
+	public Member putMember(@PathVariable Integer id, @RequestBody Member member) {
+		
+		return service.putMember(id, member);
 	}
 
-	// URI로 파라미터를 받을 경우
-//	@PutMapping(path = "/members/{id}")
-//	public Member modifyMember(@PathVariable Integer id) {
-//		return service.modifyMember(id);
-//		System.out.println(id);
-//		return new Member();
-//	}
-	
-	@DeleteMapping//(path = "/members")
-	public Integer removeMember(@RequestParam Integer id) {
+	@DeleteMapping(path = "/{id}")
+	public Integer removeMember(@PathVariable Integer id) {
 		return service.removeMember(id);
+	}
+
+	@PatchMapping(path = "/{id}") // 일부 갱신
+	public Member patchMember(@PathVariable Integer id, @RequestBody Member member) {
+		
+		return service.patchMember(id, member);
 	}
 }

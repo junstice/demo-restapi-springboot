@@ -32,8 +32,36 @@ public class MemberServiceImpl implements MembersService {
 	}
 
 	@Override
-	public Integer modifyMember(Member member) {
-		return dao.modifyMember(member);
+	public Member putMember(Integer id, Member member) {
+
+		Member putMember = new Member();
+		
+		// UPDATE에 성공했다면 갱신된 member를 반환
+		if (dao.putMember(id, member) == 1) {
+			putMember.setId(id);
+			putMember.setName(member.getName());
+			putMember.setAge(member.getAge());
+			putMember.setDept(member.getDept());
+		}
+		
+		return putMember;
+	}
+
+	@Override
+	public Member patchMember(Integer id, Member member) {
+		
+		Member patchMember = new Member();
+		
+		// UPDATE에 성공했다면 갱신된 member를 반환
+		if (dao.patchMember(id, member) == 1) {
+			patchMember.setId(id);
+			
+			if (member.getName() != null) patchMember.setName(member.getName());  
+			if (member.getAge() != null) patchMember.setAge(member.getAge());  
+			if (member.getDept() != null) patchMember.setDept(member.getDept());
+		}
+		
+		return patchMember;
 	}
 
 	@Override

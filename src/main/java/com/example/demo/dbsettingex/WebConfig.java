@@ -2,6 +2,7 @@ package com.example.demo.dbsettingex;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,10 +23,17 @@ public class WebConfig {
 				// TODO Auto-generated method stub
 				// WebMvcConfigurer.super.addCorsMappings(registry);
 				
-				registry.addMapping("/members")
-//				registry.addMapping("/members/**") // 와일드카드 지정 가능
+//				registry.addMapping("/members")
+				registry.addMapping("/members/**") // 와일드카드 지정 가능
 						.allowedOrigins("http://localhost:8080")
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "PATCH");
+						.allowedMethods(
+								HttpMethod.GET.name(),
+								HttpMethod.POST.name(),
+								HttpMethod.PUT.name(),
+								HttpMethod.DELETE.name(),
+								HttpMethod.HEAD.name(),
+								HttpMethod.PATCH.name()
+								);
 //						.allowedMethods("*"); // 모든 메소드를 허용 함
 			}
 		};

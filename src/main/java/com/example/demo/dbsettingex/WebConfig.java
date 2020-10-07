@@ -25,7 +25,7 @@ public class WebConfig {
 				
 //				registry.addMapping("/members")
 				registry.addMapping("/members/**") // 와일드카드 지정 가능
-						.allowedOrigins("http://localhost:8080")
+						.allowedOrigins("*")
 						.allowedMethods(
 								HttpMethod.GET.name(),
 								HttpMethod.POST.name(),

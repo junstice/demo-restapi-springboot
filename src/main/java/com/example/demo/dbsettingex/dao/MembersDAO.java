@@ -9,9 +9,14 @@ import com.example.demo.dbsettingex.dto.Member;
 
 @Repository
 public interface MembersDAO {
+	Member getMember(Integer id);
 	List<Member> selectMembers();
 	void registerMember(Member member);
 	Integer putMember(@Param("id") Integer id, @Param("member") Member member);
 	Integer patchMember(@Param("id") Integer id, @Param("member") Member member);
 	Integer removeMember(Integer id);
+	
+	Integer multipleInsert(List<Member> members);
+	Integer multipleUpdate();
+	Integer multipleDelete();
 }

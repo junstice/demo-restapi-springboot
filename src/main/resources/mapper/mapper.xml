@@ -3,6 +3,10 @@
 
 <mapper namespace="com.example.demo.dbsettingex.dao.MembersDAO">
 	
+	<select id="getMember" parameterType="int" resultType="com.example.demo.dbsettingex.dto.Member">
+		SELECT * FROM members WHERE id = #{id}
+	</select>
+	
 	<select id="selectMembers" resultType="com.example.demo.dbsettingex.dto.Member">
 		SELECT * FROM members
 	</select>
@@ -50,5 +54,28 @@
 	        members
 	    WHERE
 	        id = #{id}
+	</delete>
+	
+	<insert id="multipleInsert" parameterType="java.util.List">
+		INSERT INTO
+			members(name, age, dept)
+		VALUES
+		<trim suffix="" suffixOverrides=",">
+			<foreach collection="list" item="item" index="idx">
+				(#{item.name}, #{item.age}, #{item.dept}) , 
+			</foreach>
+		</trim>
+	</insert>
+	
+	<update id="multipleUpdate">
+		UPDATE 
+			members 
+		SET
+			dept = "it"
+	</update>
+	
+	<delete id="multipleDelete">
+		DELETE FROM
+			members
 	</delete>
 </mapper>

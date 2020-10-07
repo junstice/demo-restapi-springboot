@@ -16,9 +16,8 @@ public class MemberServiceImpl implements MembersService {
 	private MembersDAO dao;
 	
 	@Override
-	public Member test() {
-
-		return null;
+	public Member getMember(Integer id) {
+		return dao.getMember(id);
 	}
 
 	@Override
@@ -67,5 +66,20 @@ public class MemberServiceImpl implements MembersService {
 	@Override
 	public Integer removeMember(Integer id) {
 		return dao.removeMember(id);
+	}
+
+	@Override
+	public Integer multipleInsert(List<Member> members) {
+		return dao.multipleInsert(members);
+	}
+
+	@Override
+	public Integer multipleUpdate() {
+		return dao.multipleUpdate();
+	}
+
+	@Override
+	public Integer multipleDelete() {
+		return dao.multipleDelete();
 	}
 }
